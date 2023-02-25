@@ -10,11 +10,15 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { HttpClientModule } from '@angular/common/http';
+import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    FetchDataComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
