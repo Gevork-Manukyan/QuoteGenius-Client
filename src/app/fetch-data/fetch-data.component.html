@@ -1,1 +1,11 @@
-<div *ngFor="let quote of quotes">{{ quote.text }} <br> --{{ quote.author }} <br><br></div>
+<div *ngFor="let author of authors">
+    {{ author.name }} 
+    <br> 
+    {{ author.gender }} 
+    <br>
+    <!-- {{ author.birthday }} 
+    <br> -->
+    {{ author.race }} 
+    <br>
+    <br>
+</div>

@@ -1,5 +1,5 @@
 export interface Quote {
-    date: string,
+    author: string,
     text: string,
-    author: string
+    datePublished: Date,
 }

@@ -1,1 +1,9 @@
-<p>quotes works!</p>
+<div *ngFor="let quote of quotes">
+    {{ quote.author }} 
+    <br>
+     --{{ quote.text }} 
+    <br>
+    {{ quote.datePublished }}
+     <br><br>
+</div>
+

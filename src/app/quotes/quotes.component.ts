@@ -17,6 +17,7 @@ export class QuotesComponent implements OnInit {
     let url = environment.baseUrl + 'api/Quote';
     this.http.get<Quote[]>(url).subscribe(result => {
       this.quotes = result;
+      console.log("QUOTES: ", this.quotes[0])
     });
   }
 }
