@@ -10,6 +10,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
   private destroySubject = new Subject();
 
   constructor(private authService: AuthService,  private router: Router) {
@@ -18,6 +19,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
     .subscribe(result => {
       this.isLoggedIn = result;
     });
+
+    this.authService.adminStatus
+    .pipe(takeUntil(this.destroySubject))
+    .subscribe(result => {
+      this.isAdmin = result
+    })
   }
 
   onLogout() {
@@ -27,6 +34,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isAuthenticated();
+    this.authService.isAdmin()
   }
 
   ngOnDestroy(): void {

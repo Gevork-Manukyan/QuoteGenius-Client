@@ -11,8 +11,10 @@ import { environment } from '../environment/environment';
 export class AuthService {
   tokenKey: string = 'jwt-token';
   private _authStatus = new Subject<boolean>();
+  private _adminStatus = new Subject<boolean>();
 
   public authStatus = this._authStatus.asObservable();
+  public adminStatus = this._adminStatus.asObservable();
 
   init(): void {
     if (this.isAuthenticated()) {
@@ -22,6 +24,10 @@ export class AuthService {
 
   setAuthStatus(isAuthenticated: boolean) {
     this._authStatus.next(isAuthenticated);
+  }
+
+  setAdminStatus(isAdmin: boolean) {
+    this._adminStatus.next(isAdmin)
   }
 
   constructor(protected http: HttpClient) { }
@@ -41,8 +47,23 @@ export class AuthService {
         if (loginResult.success && loginResult.token) {
           localStorage.setItem(this.tokenKey, loginResult.token);
           this.setAuthStatus(true);
+          this.isAdmin()
         }
       }));
+  }
+
+  isAdmin(): Observable<boolean> {
+    var url = environment.baseUrl + 'api/Account/IsAdmin';
+    var item = this.getToken();
+    
+    var res = this.http.post<boolean>(url, item)
+    .pipe(tap((result: boolean) => {
+      console.log("HERE: ", result)
+      if (result) this.setAdminStatus(true)
+    }))
+
+    console.log("RES: ", res)
+    return res
   }
 
   logout() {
