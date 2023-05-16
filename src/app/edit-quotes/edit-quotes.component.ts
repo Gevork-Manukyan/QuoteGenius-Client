@@ -16,7 +16,6 @@ export class EditQuotesComponent implements OnInit {
     let url = environment.baseUrl + 'api/Quote/WithAuthors';
     this.http.get<QuoteWithAuthor[]>(url).subscribe(result => {
       const newResult = result.map(oldObj => {
-        console.log(typeof oldObj.datePublished)
         return {
           ...oldObj,
           datePublished: new Date(oldObj.datePublished).toLocaleDateString()
