@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environment/environment';
 import { QuoteWithAuthor } from '../quotes/quote';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-quotes',
@@ -10,7 +11,7 @@ import { QuoteWithAuthor } from '../quotes/quote';
 })
 export class EditQuotesComponent implements OnInit {
   public quotesWithAuthors!: QuoteWithAuthor[];
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     let url = environment.baseUrl + 'api/Quote/WithAuthors';
@@ -23,5 +24,9 @@ export class EditQuotesComponent implements OnInit {
       })
       this.quotesWithAuthors = newResult;
     });
+  }
+
+  handleClick(): void {
+    this.router.navigate(['/edit-quote/'])
   }
 }
