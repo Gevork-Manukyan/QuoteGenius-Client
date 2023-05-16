@@ -19,6 +19,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditQuotesComponent } from './edit-quotes/edit-quotes.component';
+import { EditQuotePageComponent } from './edit-quote-page/edit-quote-page.component';
 
 
 
@@ -31,6 +32,7 @@ import { EditQuotesComponent } from './edit-quotes/edit-quotes.component';
     LoginComponent,
     QuotesComponent,
     EditQuotesComponent,
+    EditQuotePageComponent,
   ],
   imports: [
     BrowserModule,

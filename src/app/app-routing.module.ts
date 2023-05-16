@@ -5,12 +5,14 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login.component';
 import { QuotesComponent } from './quotes/quotes.component';
 import { EditQuotesComponent } from './edit-quotes/edit-quotes.component';
+import { EditQuotePageComponent } from './edit-quote-page/edit-quote-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'fetch-data', component: FetchDataComponent },
   { path: 'quotes', component: QuotesComponent },
   { path: 'edit-quotes', component: EditQuotesComponent },
+  { path: 'edit-quote/:id', component: EditQuotePageComponent },
   { path: 'login', component: LoginComponent },
 ];
 
