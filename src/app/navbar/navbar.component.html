@@ -6,6 +6,8 @@
 
     <a mat-flat-button color="primary" [routerLink]="['/fetch-data']">Fetch Data</a>
     <a mat-flat-button color="primary" [routerLink]="['/quotes']">Quotes</a>
+    <a mat-flat-button color="primary" *ngIf="isAdmin" [routerLink]="['/edit-quotes']">Edit Quotes</a>
+    <!-- <a mat-flat-button color="primary" *ngIf="isAdmin && isAdminLoaded" [routerLink]="['/edit-quotes']">Edit Quotes</a> -->
 
     <span class="separator"></span>
     <a mat-flat-button *ngIf="!isLoggedIn" color="primary" [routerLink]="['/login']">Login</a>

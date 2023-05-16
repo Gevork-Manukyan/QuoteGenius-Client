@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit  } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -11,6 +11,7 @@ import { AuthService } from '../auth/auth.service';
 export class NavbarComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
   isAdmin: boolean = false;
+  // isAdminLoaded: boolean = false;
   private destroySubject = new Subject();
 
   constructor(private authService: AuthService,  private router: Router) {
@@ -34,8 +35,35 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isAuthenticated();
-    this.authService.isAdmin()
+    this.doAuthorizationCheck()
+    console.log(this.isAdmin)
   }
+
+  doAuthorizationCheck() {
+    this.authService.init();
+
+    const isAdminCached = JSON.parse(localStorage.getItem('isAdmin') || 'false');
+    if (isAdminCached) {
+      this.isAdmin = isAdminCached;
+      // return
+    }
+  
+    this.authService.isAdmin().subscribe({
+      next: result => {
+        console.log("RESULT: ", result)
+        this.authService.setAdminStatus(result);
+        // this.isAdminLoaded = true; 
+      },
+      error: error => {
+        console.log(error);
+        if (error.status == 401) {
+          this.authService.setAdminStatus(false);
+          // this.isAdminLoaded = false;
+        }
+      }
+    });
+  }
+  
 
   ngOnDestroy(): void {
     this.destroySubject.next(true);

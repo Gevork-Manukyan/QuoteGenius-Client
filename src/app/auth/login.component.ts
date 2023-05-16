@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
     };
     this.authService.login(loginRequest).subscribe({
       next: result => {
-        console.log(result);
         this.loginResult = result;
         if (result.success) {
           localStorage.setItem(this.authService.tokenKey, result.token);
@@ -43,6 +42,19 @@ export class LoginComponent implements OnInit {
           loginRequest = error.error;
         }
     }});
+
+    this.authService.isAdmin().subscribe({
+      next: result => {
+        this.authService.setAdminStatus(result)
+      },
+      error: error => {
+        console.log(error);
+        if (error.status == 401) {
+          this.authService.setAdminStatus(false)
+        }
+      }
+    })
+    
   }
 
 }
