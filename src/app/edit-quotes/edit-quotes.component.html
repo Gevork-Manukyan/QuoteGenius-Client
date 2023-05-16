@@ -1,1 +1,13 @@
-<p>edit-quotes works!</p>
+<div *ngFor="let data of quotesWithAuthors" class="quote-wrapper">
+    <div class="quote">
+        <Button>Edit</Button>
+        <div>
+            {{ data.authorName }} 
+            <br>
+            --{{ data.quoteText }} 
+            <br>
+            {{ data.datePublished }}
+            <br><br>
+        </div>
+    </div>
+</div>

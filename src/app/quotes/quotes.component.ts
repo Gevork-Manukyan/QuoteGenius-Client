@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Quote, QuoteWithAuthor } from './quote';
+import { QuoteWithAuthor } from './quote';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environment/environment';
 
