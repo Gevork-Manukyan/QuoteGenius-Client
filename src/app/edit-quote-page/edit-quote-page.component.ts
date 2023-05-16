@@ -35,7 +35,7 @@ export class EditQuotePageComponent implements OnInit {
     this.http.get<QuoteWithAuthor>(url).subscribe(result => {
       const newResult = {
           ...result,
-          datePublished: new Date(result.datePublished).toLocaleDateString()
+          datePublishedString: new Date(result.datePublished).toLocaleDateString()
       }
       this.quotesWithAuthor = newResult;
       this.form.patchValue(this.quotesWithAuthor)
@@ -43,20 +43,20 @@ export class EditQuotePageComponent implements OnInit {
   }
 
   onSubmit() {
-    // let quote = this.quote!;
+    let quotesWithAuthor = this.quotesWithAuthor!;
 
-    // quote.name = this.form.controls['name'].value;
-    // quote.iso2 = this.form.controls['iso2'].value;
-    // quote.iso3 = this.form.controls['iso3'].value;
+    quotesWithAuthor.quoteText = this.form.controls['quoteText'].value;
+    quotesWithAuthor.authorName = this.form.controls['authorName'].value;
+    quotesWithAuthor.datePublished = this.form.controls['datePublished'].value;
 
-    // let url = environment.baseUrl + `api/Countries/${quote.id}`;
+    let url = environment.baseUrl + `api/<endpoint>/${quotesWithAuthor.quoteId}`;
 
-    // this.http.put<QuoteWithAuthor>(url, quote).subscribe({
-    //   next: () => {
-    //     console.log(`Quote ${quote.id} was updated successfully`);
-    //     this.router.navigate(['/countries']);
-    //   }
-    // });
+    this.http.put<QuoteWithAuthor>(url, quotesWithAuthor).subscribe({
+      next: () => {
+        console.log(`Quote ${quotesWithAuthor.quoteId} was updated successfully`);
+        this.router.navigate(['/edit-quotes']);
+      }
+    });
   }
 
 

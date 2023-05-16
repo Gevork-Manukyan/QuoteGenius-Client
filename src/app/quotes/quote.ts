@@ -7,7 +7,8 @@ export interface Quote {
 export interface QuoteWithAuthor {
     quoteId: number,
     quoteText: string,
-    datePublished: string,
+    datePublished: Date,
+    datePublishedString: string,
     authorName: string,
     authorBirthday: Date,
     authorRace: string,

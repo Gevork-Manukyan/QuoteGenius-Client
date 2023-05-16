@@ -19,7 +19,7 @@ export class EditQuotesComponent implements OnInit {
       const newResult = result.map(oldObj => {
         return {
           ...oldObj,
-          datePublished: new Date(oldObj.datePublished).toLocaleDateString()
+          datePublishedString: new Date(oldObj.datePublished).toLocaleDateString()
         }
       })
       this.quotesWithAuthors = newResult;
