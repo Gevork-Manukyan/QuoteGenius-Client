@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl("", Validators.required)
     });
   }
-
+  
   onSubmit() {
     var loginRequest = <LoginRequest>{
       userName: this.form.controls['userName'].value,
@@ -33,6 +33,17 @@ export class LoginComponent implements OnInit {
         this.loginResult = result;
         if (result.success) {
           localStorage.setItem(this.authService.tokenKey, result.token);
+          this.authService.isAdmin().subscribe({
+            next: result => {
+              this.authService.setAdminStatus(result);
+            },
+            error: error => {
+              console.log(error);
+              if (error.status == 401) {
+                this.authService.setAdminStatus(false);
+              }
+            }
+          });
           this.router.navigate(["/"]);
         }
       },
@@ -41,20 +52,8 @@ export class LoginComponent implements OnInit {
         if (error.status == 401) {
           loginRequest = error.error;
         }
-    }});
-
-    this.authService.isAdmin().subscribe({
-      next: result => {
-        this.authService.setAdminStatus(result)
-      },
-      error: error => {
-        console.log(error);
-        if (error.status == 401) {
-          this.authService.setAdminStatus(false)
-        }
       }
-    })
-    
+    });
   }
 
 }
