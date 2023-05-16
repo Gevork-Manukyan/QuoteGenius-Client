@@ -1,6 +1,6 @@
 <div *ngFor="let data of quotesWithAuthors" class="quote-wrapper">
     <div class="quote">
-        <Button (click)="handleClick()">Edit</Button>
+        <Button (click)="handleClick(data.quoteId)">Edit</Button>
         <div>
             {{ data.authorName }} 
             <br>

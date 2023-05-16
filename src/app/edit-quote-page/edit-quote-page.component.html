@@ -1,30 +1,30 @@
-<div class="country-edit">
-    <h1>Edit - {{country?.id}}</h1>
-    <p *ngIf="this.id && !country"><em>Loading...</em></p>
+<div class="quote-edit">
+    <h1>Edit Quote: ID {{quotesWithAuthor?.quoteId}}</h1>
+    <p *ngIf="this.id && !quotesWithAuthor"><em>Loading...</em></p>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <!-- Name -->
+      <!-- Quote Text -->
       <mat-form-field>
-        <mat-label>Name:</mat-label>
-        <input matInput formControlName="name" placeholder="Type a name">
+        <mat-label>Quote</mat-label>
+        <input matInput formControlName="quoteText" placeholder="Type a quote">
       </mat-form-field>
-      <!-- ISO2 -->
+      <!-- Author -->
       <mat-form-field>
         <mat-label>
-          ISO 3166-1 ALPHA-2 Country code (2 letters)
+          Author Name
         </mat-label>
-        <input matInput formControlName="iso2" placeholder="Insert the ISO2 Country code">
+        <input matInput formControlName="authorName" placeholder="Enter author name">
       </mat-form-field>
-      <!-- ISO3 -->
+      <!-- Date Published -->
       <mat-form-field>
         <mat-label>
-          ISO 3166-1 ALPHA-3 Country code (3 letters)
+          Date Quote Published
         </mat-label>
-        <input matInput formControlName="iso3" placeholder="Insert the ISO3 Country code">
+        <input matInput formControlName="datePublished" placeholder="Enter date published">
       </mat-form-field>
       <div>
         <button mat-flat-button color="primary" type="submit">Save
         </button>
-        <button mat-flat-button color="secondary" [routerLink]="['/countries']">
+        <button mat-flat-button color="secondary" [routerLink]="['/edit-quotes']">
           Cancel
         </button>
       </div>

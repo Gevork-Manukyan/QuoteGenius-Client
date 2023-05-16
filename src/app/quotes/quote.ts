@@ -1,10 +1,11 @@
 export interface Quote {
-    author: string,
-    text: string,
+    authorName: string,
+    quoteText: string,
     datePublished: Date,
 }
 
 export interface QuoteWithAuthor {
+    quoteId: number,
     quoteText: string,
     datePublished: string,
     authorName: string,

@@ -24,9 +24,10 @@ export class EditQuotesComponent implements OnInit {
       })
       this.quotesWithAuthors = newResult;
     });
+
   }
 
-  handleClick(): void {
-    this.router.navigate(['/edit-quote/'])
+  handleClick(quoteId: number): void {
+    this.router.navigate([`/edit-quote`, quoteId])
   }
 }
