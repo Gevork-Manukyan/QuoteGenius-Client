@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService, private router: Router ) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     var token = this.authService.getToken();
@@ -31,6 +31,11 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error instanceof HttpErrorResponse && error.status === 401) {
           this.authService.logout();
           this.router.navigate(['login']);
+        } else if (error instanceof HttpErrorResponse && error.status === 403) {
+          const url = this.router.url;
+          if (url.includes('edit-quotes')) {
+            this.router.navigate(['/']);
+          }
         }
         return throwError(() => error);
       })

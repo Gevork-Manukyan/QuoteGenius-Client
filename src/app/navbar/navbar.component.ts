@@ -47,6 +47,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
         next: result => {
           console.log("RESULT: ", result);
           this.authService.setAdminStatus(result);
+          if (!result && this.router.url.includes('edit-quotes')) {
+            this.router.navigate(['/']);
+          }
         },
         error: error => {
           console.log(error);
@@ -57,6 +60,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       });
     }
   }
+  
 
   ngOnDestroy(): void {
     this.destroySubject.next(true);
