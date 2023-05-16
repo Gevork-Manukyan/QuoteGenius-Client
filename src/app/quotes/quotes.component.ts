@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Quote } from './quote';
+import { Quote, QuoteWithAuthor } from './quote';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environment/environment';
 
@@ -10,13 +10,13 @@ import { environment } from '../environment/environment';
   styleUrls: ['./quotes.component.css']
 })
 export class QuotesComponent implements OnInit {
-  public quotes!: Quote[];
+  public quotesWithAuthors!: QuoteWithAuthor[];
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    let url = environment.baseUrl + 'api/Quote';
-    this.http.get<Quote[]>(url).subscribe(result => {
-      this.quotes = result;
+    let url = environment.baseUrl + 'api/Quote/WithAuthors';
+    this.http.get<QuoteWithAuthor[]>(url).subscribe(result => {
+      this.quotesWithAuthors = result;
     });
   }
 }

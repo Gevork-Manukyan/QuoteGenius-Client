@@ -61,7 +61,6 @@ export class AuthService {
     const url = environment.baseUrl + 'api/Account/IsAdmin';
     const isAdminCached = JSON.parse(localStorage.getItem('isAdmin') || 'false');
   
-    console.log("CACHE: ", isAdminCached)
     if (isAdminCached) {
       this.setAdminStatus(isAdminCached);
       return of(isAdminCached);

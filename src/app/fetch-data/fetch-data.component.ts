@@ -16,7 +16,6 @@ export class FetchDataComponent implements OnInit {
   ngOnInit(): void {
     this.http.get<Author[]>(environment.baseUrl + 'api/Author').subscribe(result => {
       this.authors = result
-      console.log("AUTHORS: ", this.authors)
     }, error => console.error(error))
   }
 }

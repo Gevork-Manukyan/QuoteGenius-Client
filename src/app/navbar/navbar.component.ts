@@ -45,7 +45,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     } else {
       this.authService.isAdmin().subscribe({
         next: result => {
-          console.log("RESULT: ", result);
           this.authService.setAdminStatus(result);
           if (!result && this.router.url.includes('edit-quotes')) {
             this.router.navigate(['/']);

@@ -1,9 +1,9 @@
-<div *ngFor="let quote of quotes">
-    {{ quote.author }} 
+<div *ngFor="let data of quotesWithAuthors">
+    {{ data.authorName }} 
     <br>
-     --{{ quote.text }} 
+     --{{ data.quoteText }} 
     <br>
-    {{ quote.datePublished }}
+    {{ data.datePublished }}
      <br><br>
 </div>
 
