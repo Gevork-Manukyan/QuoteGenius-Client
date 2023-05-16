@@ -1,0 +1,12 @@
+.quote-wrapper {
+    display: flex;
+    margin-top: 20px;
+}
+
+.quote {
+    display: flex;
+    border: solid black;
+    border-radius: 8px;
+    padding: 10px;
+    padding-bottom: 0px;
+}

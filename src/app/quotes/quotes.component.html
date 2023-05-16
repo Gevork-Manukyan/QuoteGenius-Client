@@ -1,9 +1,11 @@
-<div *ngFor="let data of quotesWithAuthors">
-    {{ data.authorName }} 
-    <br>
-     --{{ data.quoteText }} 
-    <br>
-    {{ data.datePublished }}
-     <br><br>
+<div *ngFor="let data of quotesWithAuthors" class="quote-wrapper">
+    <div class="quote">
+        {{ data.authorName }} 
+        <br>
+        --{{ data.quoteText }} 
+        <br>
+        {{ data.datePublished }}
+        <br><br>
+    </div>
 </div>
 
