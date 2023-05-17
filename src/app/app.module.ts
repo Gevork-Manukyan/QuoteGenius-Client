@@ -16,6 +16,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { QuotesComponent } from './quotes/quotes.component';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from "@angular/material/input";
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditQuotesComponent } from './edit-quotes/edit-quotes.component';
@@ -44,7 +46,9 @@ import { EditQuotePageComponent } from './edit-quote-page/edit-quote-page.compon
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     {

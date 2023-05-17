@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { environment } from '../environment/environment';
 import { QuoteWithAuthor } from '../quotes/quote';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-edit-quote-page',
@@ -14,17 +15,21 @@ export class EditQuotePageComponent implements OnInit {
   quotesWithAuthor?: QuoteWithAuthor;
   form!: FormGroup;
   id!: number;
+  datePickerEvent!: MatDatepickerInputEvent<Date>;
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
-    this.form = new FormGroup(
-      {
-        quoteText: new FormControl(''),
-        authorName: new FormControl(''),
-        datePublished: new FormControl(''),
-      }
-    );
+    this.form = this.formBuilder.group({
+      quoteText: [''],
+      authorName: [''],
+      datePublished: [''],
+    });
 
     this.loadData();
   }
@@ -34,8 +39,8 @@ export class EditQuotePageComponent implements OnInit {
     let url = environment.baseUrl + `api/Quote/WithAuthor/${idParam}`;
     this.http.get<QuoteWithAuthor>(url).subscribe(result => {
       const newResult = {
-          ...result,
-          datePublishedString: new Date(result.datePublished).toLocaleDateString()
+        ...result,
+        datePublishedString: new Date(result.datePublished).toLocaleDateString()
       }
       this.quotesWithAuthor = newResult;
       this.form.patchValue(this.quotesWithAuthor)
@@ -49,7 +54,9 @@ export class EditQuotePageComponent implements OnInit {
     quotesWithAuthor.authorName = this.form.controls['authorName'].value;
     quotesWithAuthor.datePublished = this.form.controls['datePublished'].value;
 
-    let url = environment.baseUrl + `api/<endpoint>/${quotesWithAuthor.quoteId}`;
+    console.log("DATE: ", quotesWithAuthor.datePublished)
+
+    let url = environment.baseUrl + `api/WithAuthor/${quotesWithAuthor.quoteId}`;
 
     this.http.put<QuoteWithAuthor>(url, quotesWithAuthor).subscribe({
       next: () => {
@@ -59,5 +66,8 @@ export class EditQuotePageComponent implements OnInit {
     });
   }
 
-
+  onDateSelected(event: MatDatepickerInputEvent<Date>): void {
+    this.datePickerEvent = event;
+    this.form.get('datePublished')?.setValue(event.value);
+  }
 }
