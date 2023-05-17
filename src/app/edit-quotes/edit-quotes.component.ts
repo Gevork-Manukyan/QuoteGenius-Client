@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environment/environment';
-import { QuoteWithAuthor } from '../quotes/quote';
+import { QuoteWithAuthor, QuoteWithAuthorDisplay } from '../quotes/quote';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-quotes.component.css']
 })
 export class EditQuotesComponent implements OnInit {
-  public quotesWithAuthors!: QuoteWithAuthor[];
+  public quotesWithAuthors!: QuoteWithAuthorDisplay[];
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {

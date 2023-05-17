@@ -38,11 +38,7 @@ export class EditQuotePageComponent implements OnInit {
     let idParam = this.activatedRoute.snapshot.paramMap.get('id');
     let url = environment.baseUrl + `api/Quote/WithAuthor/${idParam}`;
     this.http.get<QuoteWithAuthor>(url).subscribe(result => {
-      const newResult = {
-        ...result,
-        datePublishedString: new Date(result.datePublished).toLocaleDateString()
-      }
-      this.quotesWithAuthor = newResult;
+      this.quotesWithAuthor = result;
       this.form.patchValue(this.quotesWithAuthor)
     });
   }
@@ -54,9 +50,7 @@ export class EditQuotePageComponent implements OnInit {
     quotesWithAuthor.authorName = this.form.controls['authorName'].value;
     quotesWithAuthor.datePublished = this.form.controls['datePublished'].value;
 
-    console.log("DATE: ", quotesWithAuthor.datePublished)
-
-    let url = environment.baseUrl + `api/WithAuthor/${quotesWithAuthor.quoteId}`;
+    let url = environment.baseUrl + `api/Quote/WithAuthor/${quotesWithAuthor.quoteId}`;
 
     this.http.put<QuoteWithAuthor>(url, quotesWithAuthor).subscribe({
       next: () => {

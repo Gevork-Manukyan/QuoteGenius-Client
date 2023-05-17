@@ -8,9 +8,14 @@ export interface QuoteWithAuthor {
     quoteId: number,
     quoteText: string,
     datePublished: Date,
-    datePublishedString: string,
+    authorId: number,
     authorName: string,
     authorBirthday: Date,
     authorRace: string,
     authorGender: string,
+}
+
+
+export interface QuoteWithAuthorDisplay extends QuoteWithAuthor {
+    datePublishedString: string
 }
