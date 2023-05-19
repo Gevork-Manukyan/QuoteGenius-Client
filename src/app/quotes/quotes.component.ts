@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuoteWithAuthor, QuoteWithAuthorDisplay } from './quote';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../environment/environment';
+import { environment } from '../environment/environment.prod';
 
 
 @Component({

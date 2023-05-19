@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { environment } from '../environment/environment';
+import { environment } from '../environment/environment.prod';
 import { QuoteWithAuthor } from '../quotes/quote';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 

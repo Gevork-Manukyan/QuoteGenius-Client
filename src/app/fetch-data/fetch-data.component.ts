@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Author } from './author';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../environment/environment';
+import { environment } from '../environment/environment.prod';
 
 
 @Component({
